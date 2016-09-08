@@ -15,6 +15,8 @@ require ("Common/EnumDefine")
 require ("Util/UITools")
 require ("Util/Util")
 
+require ("Role/Define/RoleDefine")
+
 require ("Manager/ResourceManager")
 
 require ("Logic/MVC/ControlManager")

@@ -2,7 +2,7 @@ local DisplayBase = luaclass("DisplayBase")
 local ResourceManager = ResourceManager
 
 function DisplayBase:DefineProperty()
-    self.roleBase =  nil
+    self.roleContorl =  nil
     self.insideEventMgr = nil
     self.go = nil
     self.tr = nil
@@ -13,7 +13,7 @@ end
 
 function DisplayBase:New(role, eventMgr)
     self:DefineProperty()
-    self.roleBase = role
+    self.roleContorl = role
     self.insideEventMgr = eventMgr
     return self
 end
@@ -23,7 +23,7 @@ function DisplayBase:Init()
 end
 
 function DisplayBase:Show()
-    ResourceManager.Load(roleBase.data:Get("url"), self.OnLoaded, self)
+    ResourceManager.Load(roleContorl.data:Get("url"), self.OnLoaded, self)
 end
 
 function DisplayBase:OnLoaded(obj)
