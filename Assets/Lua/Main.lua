@@ -8,7 +8,9 @@ local function Init()
 	ViewManager.Init()
 end
 --主入口函数。从这里开始lua逻辑
-function GameMain()					
+function GameMain()			
+	UpdateBeat:Add(Main.Update)
+	LateUpdateBeat:Add(Main.LateUpate)		
 	Init()
 	Main.UIRoot = GameObject.Find("UI/Canvas")
 	--ResourceManager.LoadAsset("UI/PanelTest", function (obj) end)
