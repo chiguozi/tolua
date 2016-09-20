@@ -6,6 +6,8 @@ local function Init()
 	ModelManager.Init()
 	ControlManager.Init()
 	ViewManager.Init()
+
+	--UpdateBeat.Add(Main.Update)
 end
 --主入口函数。从这里开始lua逻辑
 function GameMain()					
@@ -13,6 +15,7 @@ function GameMain()
 	Main.UIRoot = GameObject.Find("UI/Canvas")
 	--ResourceManager.LoadAsset("UI/PanelTest", function (obj) end)
 	UIManager.Open("PanelTest")
+
 end
 
 
