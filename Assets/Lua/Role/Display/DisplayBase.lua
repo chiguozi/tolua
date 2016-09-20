@@ -1,8 +1,9 @@
 local DisplayBase = luaclass("DisplayBase")
 local ResourceManager = ResourceManager
+local InsideType = RoleDefine.InsideType
 
 function DisplayBase:DefineProperty()
-    self.roleContorl =  nil
+    self.roleControl =  nil
     self.insideEventMgr = nil
     self.go = nil
     self.tr = nil
@@ -13,7 +14,7 @@ end
 
 function DisplayBase:New(role, eventMgr)
     self:DefineProperty()
-    self.roleContorl = role
+    self.roleControl = role
     self.insideEventMgr = eventMgr
     return self
 end
@@ -23,7 +24,7 @@ function DisplayBase:Init()
 end
 
 function DisplayBase:Show()
-    ResourceManager.Load(roleContorl.data:Get("url"), self.OnLoaded, self)
+    ResourceManager.Load(roleControl.data:Get("url"), self.OnLoaded, self)
 end
 
 function DisplayBase:OnLoaded(obj)
@@ -32,6 +33,7 @@ function DisplayBase:OnLoaded(obj)
     end
     self.go = GameObject.Instantiate(obj)
     self.tr = self.go.transform
+    self.insideEventMgr.Send(InsideType.CreateRoleFinish)
 end
 
 function DisplayBase:SetPos(value)
@@ -40,6 +42,13 @@ function DisplayBase:SetPos(value)
     if nil ~= self.tr then
         self.tr.position = pos
     end
+end
+
+function DisplayBase:GetComponent(type)
+    if nil ~= self.go then
+        return self.go:GetComponent(type)
+    end
+    return nil
 end
 
 function DisplayBase:Regist(type, callback)
